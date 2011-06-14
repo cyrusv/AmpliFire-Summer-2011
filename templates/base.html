@@ -14,58 +14,71 @@
   <script>
   
   ///////// TABS Filter/search TABS///////
-	$(document).ready(function() {
+	$(document).ready(function() 
+		{
 
-	//When page loads...
-	$(".tab_content").hide(); //Hide all content
-	//$(".tab_container").animate({height:250},"slow"); //Hide all content
-	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-	$(".tab_content:first").show(); //Show first tab content
-	$("ul.genrechoices").hide(); //hide genrechoices
-	$(".smartchoices").hide(); //hide genrechoices
+		//When page loads...
+		$(".tab_content").hide(); //Hide all content
+		//$(".tab_container").animate({height:250},"slow"); //Hide all content
+		$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+		$(".tab_content:first").show(); //Show first tab content
+		$("ul.genrechoices").hide(); //hide genrechoices
+		$(".smartchoices").hide(); //hide genrechoices
 	
 
-	//On Click Event
-	$("ul.tabs li").click(function() {
+		//On Click Event
+		$("ul.tabs li").click(function()
+			{
 
-		$("ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$(".tab_content").hide(); //Hide all tab content
+			$("ul.tabs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$(".tab_content").hide(); //Hide all tab content
 
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
-	});
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+			});
 
+		});	
 	//////// filters ////////
 	
-	//browse
-	$("label.showgenre").click(function() {
-		
-		if( $("input[name=genre]").is(':checked') )
-		{
-		$("ul.genrechoices").show("normal"); //
-		}
-		else {
-		$("ul.genrechoices").hide("normal"); //
-		}
-	});
 	
-	$("label.showsmart").click(function() {
-		if( $('input[name=smart]').is(':checked') )
+	$(document).ready(function() 
 		{
-		$(".smartchoices").show("normal"); //
-		}
-		else {
-		$(".smartchoices").hide("normal"); //
-		}
-	});
+		//browse
+		$("input#genre").click(function()
+			{
+			$("ul.genrechoices").toggle("normal"); 
+			});
+		
+		$("input#smartid").click(function()     //"label[for=showsmart]"
+			{
+			$(".smartchoices").toggle("normal");
+			});
+		
+		
+		$("input#rock").click(function()
+			{
+			$(".rock").toggle("normal");
+			});
+		$("input#pop").click(function()
+			{
+			$(".pop").toggle("normal");
+			});
+		$("input#electronic").click(function()
+			{
+			$(".electronic").toggle("normal");
+			});
+		$("input#hip-hop").click(function()
+			{
+			$(".hip-hop").toggle("normal");
+			});
+
 	
 	//search
 	
-	
-	///
-	});
+
+		});
 	
 	
 	
@@ -145,13 +158,14 @@ $(document).ready(function(){
 					<ul class="browse_search_content">
 					<li><input type="submit" value="Shuffle!" /></li><br>
 					
-					<li><label for="genre" class="showgenre"><input type="checkbox" name="genre" value="genre" id="genre"/> Genre </label></li>
+					<label for="genre"><li><input type="checkbox" name="genre" value="genre" id="genre"/> Genre</li></label>
 						<ul class="genrechoices">
-							<li class="browsechoices"><label for="pop"><input type="checkbox" name="pop" value="pop" id="pop" checked="yes"/> Pop </label></li>
-							<li class="browsechoices"><label for="rock"><input type="checkbox" name="rock" value="rock" id="rock" checked="yes"/> Rock </label></li>
-							<li class="browsechoices"><label for="electronic"><input type="checkbox" name="electronic" value="electronic" id="electronic" checked="yes"/> Electronic </label></li>
+							<label for="pop"><li class="browsechoices"><input type="checkbox" name="pop" value="pop" id="pop" checked="yes"/> Pop </li></label>
+							<label for="rock" class="rockchoice"><li class="browsechoices"><input type="checkbox" name="rock" value="rock" id="rock" checked="yes"/> Rock </li></label>
+							<label for="electronic"><li class="browsechoices"><input type="checkbox" name="electronic" value="electronic" id="electronic" checked="yes"/> Electronic </li></label>
+							<label for="hip-hop"><li class="browsechoices"><input type="checkbox" name="hip-hop" value="hip-hop" id="hip-hop" checked="yes"/> Hip-Hop </li></label>
 						</ul>
-					<li><label for="smart" class="showsmart"><input type="checkbox" name="smart" value="smart" id="smart" /> SmartFilter</label></li>
+					<label for="smartid"><li class="smart"><input type="checkbox" name="smart" value="smart" id="smartid" /> SmartFilter</li></label>
 						
 							
 					

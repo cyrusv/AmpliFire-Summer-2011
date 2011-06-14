@@ -27,7 +27,7 @@ class Song(models.Model):
 	GENRE_CHOICES = (
 		(u'rock', u'rock'),
 		(u'pop', u'pop'),
-		(u'hiphop', u'hiphop'),
+		(u'hip-hop', u'hip-hop'),
 		(u'latin', u'latin'),
 		(u'electronic', u'electronic'),
 		(u'other', u'other'),

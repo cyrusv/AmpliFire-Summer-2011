@@ -35,13 +35,12 @@ def ajaxrecommend(request):
 
 def main_page(request):
 	user = request.user
-	songs = Song.objects.order_by('-score')[:3] #only displays latest 10 songs
-	variables = RequestContext(request, {'songs': songs})
+	variables = RequestContext(request, {})
 	return render_to_response("main_page.html", variables)
 
 def get_top_ten(request):
 	if request.is_ajax():
-		top_ten_songs = Song.objects.order_by('-score')[:6] #only displays latest 10 songs
+		top_ten_songs = Song.objects.order_by('-score')[:10] #only displays latest 10 songs
 		top_ten_data = serializers.serialize("json", top_ten_songs, use_natural_keys=True)
 		return HttpResponse(top_ten_data, 'application/json')
 	else:

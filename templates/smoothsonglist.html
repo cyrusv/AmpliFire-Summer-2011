@@ -1,23 +1,23 @@
 <script>	 
-$(document).ready(function(){
+$(document).ready(function()
+				{
 	
-	$(".recommend").ready(function()
-				{				
-				$.get("/get_top_ten/",  //ask for top ten songs of the day
-				{},
-				function(top_ten_data)
-							  {
-							  var songlisttext = '';
+			
+				$.get(	"/get_top_ten/",  //ask for top ten songs of the day
+						{},
+						function(top_ten_data)
+							{
+							var songlisttext = '';
 
-							  for (key in top_ten_data) 
+							for (key in top_ten_data) 
 								{
-								songlisttext+='<div id="song_'+top_ten_data[key].pk+'" class="fullsong"><div id="votes-song_'+top_ten_data[key].pk+'" class="votes"><div id="upvote-song_'+top_ten_data[key].pk+'" class="upvote"></div><div id="songscore-song_'+top_ten_data[key].pk+'" class="songscore">'+top_ten_data[key].fields.score+'</div><div id="downvote-song_'+top_ten_data[key].pk+'" class="downvote"></div></div><div id="mainsong-song_'+top_ten_data[key].pk+'" class="mainsong"><h1><a href = "/media/'+top_ten_data[key].fields.song_file+'">'+top_ten_data[key].fields.song_name+'</a></h1><h3><a href = "/artist/'+top_ten_data[key].fields.artist_name+'">'+top_ten_data[key].fields.artist_name+'</a></h3><p class="details">'+top_ten_data[key].fields.genre+' posted on '+top_ten_data[key].fields.created_on+'</p></div></div></div>';
+								songlisttext+='<div id="song_'+top_ten_data[key].pk+'" class="fullsong '+top_ten_data[key].fields.genre+'"><div id="votes-song_'+top_ten_data[key].pk+'" class="votes"><div id="upvote-song_'+top_ten_data[key].pk+'" class="upvote"></div><div id="songscore-song_'+top_ten_data[key].pk+'" class="songscore">'+top_ten_data[key].fields.score+'</div><div id="downvote-song_'+top_ten_data[key].pk+'" class="downvote"></div></div><div id="mainsong-song_'+top_ten_data[key].pk+'" class="mainsong"><h1><a href = "/media/'+top_ten_data[key].fields.song_file+'">'+top_ten_data[key].fields.song_name+'</a></h1><h3><a href = "/artist/'+top_ten_data[key].fields.artist_name+'">'+top_ten_data[key].fields.artist_name+'</a></h3><p class="details">'+top_ten_data[key].fields.genre+' posted on '+top_ten_data[key].fields.created_on+'</p></div></div></div>';
 								}
 								$("#songlist").append(songlisttext);		
-							  });
+							});
 	
 				});
-			});
+
 	
 
 	
