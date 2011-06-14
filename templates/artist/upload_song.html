@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Upload Song {% endblock %}
+
+{% block head %} Upload Song {% endblock %}
+
+{% block artist %}class="active_nav"{%endblock%}
+
+{% block content %}
+
+<p> 
+	<form enctype="multipart/form-data" name = "" action = "." method = "POST">
+	{{ form }}
+	<br><br>
+	<input type = "submit" value = "Upload" />
+	</form>
+</p>
+	
+{% endblock %}

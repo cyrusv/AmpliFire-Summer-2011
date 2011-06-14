@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<title>
+		Amplifire | {% block title %}{% endblock %}
+	</title>
+	<link rel = "stylesheet" href = "/site_media/style.css" type = "text/css" />
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/site_media/ibox/ibox.js"></script>
+	
+  <script>
+  
+  ///////// TABS Filter/search TABS///////
+	$(document).ready(function() {
+
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	//$(".tab_container").animate({height:250},"slow"); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+	$("ul.genrechoices").hide(); //hide genrechoices
+	$(".smartchoices").hide(); //hide genrechoices
+	
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
+
+	//////// filters ////////
+	
+	//browse
+	$("label.showgenre").click(function() {
+		
+		if( $("input[name=genre]").is(':checked') )
+		{
+		$("ul.genrechoices").show("normal"); //
+		}
+		else {
+		$("ul.genrechoices").hide("normal"); //
+		}
+	});
+	
+	$("label.showsmart").click(function() {
+		if( $('input[name=smart]').is(':checked') )
+		{
+		$(".smartchoices").show("normal"); //
+		}
+		else {
+		$(".smartchoices").hide("normal"); //
+		}
+	});
+	
+	//search
+	
+	
+	///
+	});
+	
+	
+	
+
+//	RECOMMENDATION ///////
+	 
+$(document).ready(function(){
+	
+	$(".recommend").ready(function()
+				{				
+				$.get("/ajax/recommend/",  //ask for recommendations
+				{},
+				function(data)
+							  {
+								$("#rec0").replaceWith('<p id="recp"><a href="'+data[0].fields.song_file+'">'+data[0].fields.song_name+'</a></p>');
+								$("#rec1").replaceWith('<p id="recp"><a href="'+data[1].fields.song_file+'">'+data[1].fields.song_name+'</a></p>');
+								$("#rec2").replaceWith('<p id="recp"><a href="'+data[2].fields.song_file+'">'+data[2].fields.song_name+'</a></p>');
+								$("#rec3").replaceWith('<p id="recp"><a href="'+data[3].fields.song_file+'">'+data[3].fields.song_name+'</a></p>');
+												
+												
+												
+								
+							  });
+	
+				});
+			});
+
+
+
+	
+  </script>
+	
+	
+	</head>
+	
+	
+	
+	
+
+<body>
+
+	<!-- wrap starts here -->
+	<div id="wrap">
+	
+		<!-- LOGO -->	
+		<div id="amplifirelogo">
+		<img src="/site_media/amplifire.png" alt="Amplifire" width="200"/>
+		</div>
+		<!-- LOGO end -->	
+	
+	
+		<div align=right>
+		{% if user.is_authenticated %}
+			Hello, {{ user.username }}! <br>
+			(<a href = "/logout">logout</a>)
+		{% else %}
+			<a href="/login/" rel="ibox&width=550" title="Log in or Register">login</a>
+			<!--<a href = "/register/">register</a>-->
+		{% endif %}
+		</div>
+		
+			
+			{% load check_group_membership %}
+			
+			<!-- LEFTwrap starts -->
+			<div id="left_subwrap">
+				<div id="browse_search">
+				<ul class="tabs">
+					<li><a href="#tab1">Browse</a></li>
+					<li><a href="#tab2">Search</a></li>
+				</ul>
+
+				<div class="tab_container">
+					<div id="tab1" class="tab_content">
+					
+					<form action="" method="GET">
+					<ul class="browse_search_content">
+					<li><input type="submit" value="Shuffle!" /></li><br>
+					
+					<li><label for="genre" class="showgenre"><input type="checkbox" name="genre" value="genre" id="genre"/> Genre </label></li>
+						<ul class="genrechoices">
+							<li class="browsechoices"><label for="pop"><input type="checkbox" name="pop" value="pop" id="pop" checked="yes"/> Pop </label></li>
+							<li class="browsechoices"><label for="rock"><input type="checkbox" name="rock" value="rock" id="rock" checked="yes"/> Rock </label></li>
+							<li class="browsechoices"><label for="electronic"><input type="checkbox" name="electronic" value="electronic" id="electronic" checked="yes"/> Electronic </label></li>
+						</ul>
+					<li><label for="smart" class="showsmart"><input type="checkbox" name="smart" value="smart" id="smart" /> SmartFilter</label></li>
+						
+							
+					
+					<span class="smartchoices">Filter strength<br></span>
+					<li><input type="range" name="randomness" min="0" max="10" step=".1" value="5" class="smartchoices"></li>
+					
+					
+					</form>
+					
+					
+					
+					</div>
+					
+					<div id="tab2" class="tab_content">
+					<form>
+					<p><input name="search" placeholder="Search" legnth="100"></p>
+					<p align="center"><input type="submit" name="search" value="search"></p>
+					</ul>
+					</form>
+					
+					</div>
+				</div>
+				</div>
+				
+				
+				<div id="recommendations">
+				<h3>You might also like:</h3>
+				<p> <span id="recommend">Regenerate Recommendations</span></p>
+				<div id="rec0"></div>
+				<div id="rec1"></div>
+				<div id="rec2"></div>
+				<div id="rec3"></div>
+				</div>
+			
+			</div>
+			<!-- leftwrap ends -->
+			
+			
+			
+			
+			<!-- RIGHTwrap starts -->
+			<div id="right_subwrap">
+			
+			<div id="toptabnav">
+			<a href="/" {% block listen %}{%endblock%}>       <img src="/site_media/lissen.png" alt="Listen" height="80"/></a>
+			<a href="/artist/" {% block artist %}{%endblock%}><img src="/site_media/brodcast.png" alt="Broadcast" height="80"/></a>
+			<a href="/users/{{user.username}}/"{% block profile %}{%endblock%}><img src="/site_media/myprofile.png" alt="My Profile" height="80"/></a>
+			</div>
+			
+			<!-- content-wrap starts -->
+			<div id="content-wrap">
+
+				<div id="main">
+
+
+						{% block content %}
+						{% endblock %}
+					
+				</div>
+
+			<!-- content-wrap ends-->	
+			</div>
+			</div>
+			<!-- RIGHTwrap ends -->
+			
+			
+			
+			
+			
+			
+			
+				<!-- FOOTER starts	
+		<div id="footer-wrap">
+			<div id="footer-content">
+				<div id="footer-bottom">
+				<p>
+				<a href="/">Home</a>&nbsp;| <a href="/navigate/">Navigate</a>&nbsp;| <a href="/contact/">Contact</a>
+				
+	   		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&copy; 2011  <strong>AmpliFire</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+	 
+	   		    </p>
+				</div>	
+			</div>
+		</div>
+		footer ends-->		
+			
+	
+
+		
+		
+		
+	</div>
+	<!-- wrap ends here -->
+<img id="headphonepic" src="site_media/dj.jpg">
+
+	
+	
+</body>		
+</html>

@@ -1,0 +1,43 @@
+<script>	 
+$(document).ready(function(){
+	
+	$(".recommend").ready(function()
+				{				
+				$.get("/get_top_ten/",  //ask for top ten songs of the day
+				{},
+				function(top_ten_data)
+							  {
+							  var songlisttext = '';
+
+							  for (key in top_ten_data) 
+								{
+								songlisttext+='<div id="song '+top_ten_data[key].pk+'" class=""><div id="votes" class="recommend"><div id="upvotebox" class="upvote"></div><div id="songscore">'+top_ten_data[key].fields.score+'</div><div id="downvotebox" class="downvote"></div></div><div id="mainsong"><h1><a href = "/media/'+top_ten_data[key].fields.song_file+'">'+top_ten_data[key].fields.song_name+'</a></h1><h3><a href = "/artist/'+top_ten_data[key].fields.artist_name+'">'+top_ten_data[key].fields.artist_name+'</a></h3><p class="details">'+top_ten_data[key].fields.genre+' posted on '+top_ten_data[key].fields.created_on+'</p></div></div></div>';
+								}
+								$("#songlist").append(songlisttext);		
+							  });
+	
+				});
+			});
+	
+
+	
+//if somebody clicks upvote
+$("body").delegate("div.upvote", "click", function(){
+      $(this).css("background-position","left bottom");
+
+    });
+
+//if somebody clicks downvote
+$("body").delegate("div.downvote", "click", function(){
+      $(this).css("background-position","left bottom");
+	  
+    });
+	
+  </script>
+  
+  
+
+<div id="songlist">
+  
+  
+</div>

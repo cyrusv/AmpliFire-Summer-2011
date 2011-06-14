@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load check_group_membership %}
+
+{% block title %} Amplifire {% endblock %}
+
+{% block head %} Amplifire {% endblock %}
+
+{% block artist %}class="active_nav"{%endblock%}
+
+{% block content %}
+
+	{% if user.username %}
+		<p>Hello {{ user }}! This page displays all the artist groups that you belong to.</p>
+		{% if user.artist_set.all|length == 0 %}
+		<p> You should register a <a href = "/artist/create/">new artist</a> or join an <a href = "/artist/search/">existing artist</a>! </p>
+		
+		{% else %}
+		<p>You may edit the artist pages for the following:</p>
+			{% for artist in user.artist_set.all %}
+		
+			<p> <a href = "/artist/{{artist.artist_name}}/">{{artist}}</a> </p>
+			
+			{% endfor %}
+					<p> <a href = "/artist/create/">Create another artist group</a> </p>
+		{% endif %}
+	{% else %}
+		<p>Welcome!
+			You need to <a href = "/login/">login</a> or <a href = "/register/">register</a> before you can become awesome.</p>
+	{% endif %}
+
+	
+{% endblock %}

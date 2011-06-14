@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load check_group_membership %}
+{% block title %} Create Band {% endblock %}
+{% block head %} {{ Artist_name }} - View  {% endblock %}
+
+{% block artist %}class="active_nav"{%endblock%}
+
+{% block content %}
+
+
+<h1> {{ artist }} </h1>
+
+	<!--
+	eventually we will write this as a "for" loop. This will require 
+	writing a function in the Artist model that returns a list of the fields that interest us.
+	-->
+	
+	<p>Band Name: {{ artist.artist_name }} </p>
+	<p>Zipcode: {{ artist.zipcode }} </p>
+
+	<br><br>
+	<p><strong>Members of {{artist}}:</strong></p>
+	{% for member in artist.members.all %}
+	<p>{{member}}</p>
+	{% endfor %}
+	<p><strong>Discography of {{artist}}:</strong></p>
+	{% for song in artist.song_set.all %}
+	<p><a href = "/media/songs/{{song.song_file}}">{{song}}</a></p>
+	{% endfor %}
+
+	
+	
+	{% if request.user in artist.members.all %}
+	
+	<p><a href = "/artist/{{artist.artist_name}}/edit/">Edit: {{artist}}</a></p>
+	<p><a href = "/artist/{{artist.artist_name}}/upload/">Upload another song</a></p>
+	
+	{% endif %}
+	
+	
+{% endblock %}

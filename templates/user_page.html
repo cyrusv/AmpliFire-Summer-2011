@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} Amplifire {% endblock %}
+{% block head %} User Page {% endblock %}
+{% block profile %}class="active_nav"{%endblock%}
+{% block content %}
+	<h1>{{user.first_name}} {{user.last_name}} profile</h1>
+	<p>first name: {{user.first_name}}</p>
+	<p>last name: {{user.last_name}}</p>
+	<p>username: {{user.username}}</p>
+	<p>email: {{user.email}}</p>
+	<p>artist groups: {% for artist in user.artist_set.all%} <a href = "/artist/{{artist.artist_name}}/">{{artist}}</a> {%endfor%}</p>
+	<p></p>
+	<p><a href="/artist/create/">create an artist group</a></p>
+	<p><a href="/">edit your profile. Link doesn't work yet</a></p>
+	
+{% endblock %}

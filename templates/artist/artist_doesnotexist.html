@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load check_group_membership %}
+
+{% block title %} Amplifire {% endblock %}
+
+{% block head %} Amplifire {% endblock %}
+
+{% block artist %}class="active_nav"{%endblock%}
+
+{% block content %}
+
+	{% if user.username %}
+	
+		<p>Hello {{ user }}! </p>
+		
+			<p>{{artist_name}}'s Profile Page is not setup yet! Set it up <a href = "/artist/create/">here!</a></p>
+		
+	{% else %}
+	
+		<p>Welcome!	You need to <a href = "/login/">login</a> or <a href = "/register/">register</a> before you can become awesome.</p>
+			
+	{% endif %}
+	
+{% endblock %}

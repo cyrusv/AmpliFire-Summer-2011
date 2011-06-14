@@ -1,0 +1,15 @@
+from artist.forms import *
+
+{% extends "base.html" %}
+{% block title %} Amplifire {% endblock %}
+{% block head %} Save Profile {% endblock %}
+
+{% block artist %}class="active_nav"{%endblock%}
+
+{% block content %}
+	<form method = "post" action = ".">{% csrf_token %}
+		{{ form.as_p }}
+		<input type = "hidden" name = "next" value = "/" />
+		<input type = "submit" value = "submit" />
+	</form>
+{% endblock %}

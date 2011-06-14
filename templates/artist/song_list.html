@@ -1,0 +1,47 @@
+{% load voting_tags %}
+{% votes_by_user user on songs as vote_dict %}
+{% scores_for_objects songs as score_dict %}
+
+
+{% for song in songs %}
+
+<div id="fullsong" class="{% cycle odd,even %}">
+
+		{% dict_entry_for_item song from vote_dict as vote %}
+		{% dict_entry_for_item song from score_dict as score %}
+
+		<div id="votes" class="recommend">
+		<form id="songup{{ song.id }}" action="/song/{{ song.id }}/{% if vote and vote.is_upvote %}clear{% else %}up{% endif %}vote/" method="POST" align="center">
+			<input type="image" id="songuparrow{{ song.id }}" src="site_media/upvote{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png" class="songvote" align="center">
+		</form>
+		
+				<span class="score" id="songscore{{ song.id }}"
+					  title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
+				 <h1  align="center">{{ score.score|default:0 }}</h1>
+				</span>
+		
+		<form id="songdown{{ song.id }}" action="/song/{{ song.id }}/{% if vote and vote.is_downvote %}clear{% else %}down{% endif %}vote/" method="POST" align="center">
+			<input type="image" id="songdownarrow{{ song.id }}" src="site_media/downvote{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png" class="songvote">
+		</form>
+		</div>
+		
+		
+		<div id="mainsong">
+			 <h1><a href = "/media/{{song.song_file}}">{{song}}</a></h1>
+			 <h3><a href = "/artist/{{song.artist_name}}">{{song.artist_name}}</a></h3>
+
+			  <p class="details">
+				{{song.genre}}
+				posted {{ song.created_on|timesince }} ago by
+				<span class="artist"><a href="/artist/{{song.artist_name}}">{{ song.artist_name|escape }}</a></span>
+			  </p>
+		</div>
+  
+ {% endfor %}
+
+<script type="text/javascript" src="/site_media/voting_script.js">
+Event.observe(window, "load", function()
+{
+    new VoteHijacker("song");
+});
+</script>

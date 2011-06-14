@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Registration Successful {% endblock %}
+{% block head %} Registration Completed Successfully {% endblock %}
+
+{% block artist %}class="active_nav"{%endblock%}
+
+{% block content %}
+	<p> Thank you {{ user.username }} for registering your band. Your information has been saved in the database.</p> 
+	
+	<p> Now you can either
+	<a href = "/artist/">login</a> or go back to the
+	<a href = "/">main page</a>. And I think Cyrus is one of those gays.</p> 
+{% endblock %}
+
+
