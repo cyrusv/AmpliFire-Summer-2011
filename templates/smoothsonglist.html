@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 							  for (key in top_ten_data) 
 								{
-								songlisttext+='<div id="song '+top_ten_data[key].pk+'" class=""><div id="votes" class="recommend"><div id="upvotebox" class="upvote"></div><div id="songscore">'+top_ten_data[key].fields.score+'</div><div id="downvotebox" class="downvote"></div></div><div id="mainsong"><h1><a href = "/media/'+top_ten_data[key].fields.song_file+'">'+top_ten_data[key].fields.song_name+'</a></h1><h3><a href = "/artist/'+top_ten_data[key].fields.artist_name+'">'+top_ten_data[key].fields.artist_name+'</a></h3><p class="details">'+top_ten_data[key].fields.genre+' posted on '+top_ten_data[key].fields.created_on+'</p></div></div></div>';
+								songlisttext+='<div id="song_'+top_ten_data[key].pk+'" class="fullsong"><div id="votes-song_'+top_ten_data[key].pk+'" class="votes"><div id="upvote-song_'+top_ten_data[key].pk+'" class="upvote"></div><div id="songscore-song_'+top_ten_data[key].pk+'" class="songscore">'+top_ten_data[key].fields.score+'</div><div id="downvote-song_'+top_ten_data[key].pk+'" class="downvote"></div></div><div id="mainsong-song_'+top_ten_data[key].pk+'" class="mainsong"><h1><a href = "/media/'+top_ten_data[key].fields.song_file+'">'+top_ten_data[key].fields.song_name+'</a></h1><h3><a href = "/artist/'+top_ten_data[key].fields.artist_name+'">'+top_ten_data[key].fields.artist_name+'</a></h3><p class="details">'+top_ten_data[key].fields.genre+' posted on '+top_ten_data[key].fields.created_on+'</p></div></div></div>';
 								}
 								$("#songlist").append(songlisttext);		
 							  });
@@ -23,14 +23,91 @@ $(document).ready(function(){
 	
 //if somebody clicks upvote
 $("body").delegate("div.upvote", "click", function(){
-      $(this).css("background-position","left bottom");
+		if ($(this).css("background-position") == "0% 0%") //if already upvote
+			{
+			//gets the song id number as an int
+			var song_id=$(this).attr('id');
+			song_id=song_id.replace("upvote-song_", "");
+			song_id=parseInt(song_id);
+			
+			var thissongscore_selector='#songscore-song_'+song_id;
+			var thissongscore=$(thissongscore_selector).text();
+			var newsongscore=thissongscore-1;
+			$(thissongscore_selector).html(newsongscore);
+			$(this).css("background-position", "0% 100%");
+			}
+		else //if already not upvote
+			{
+			var song_id=$(this).attr('id');
+			song_id=song_id.replace("upvote-song_", "");
+			song_id=parseInt(song_id);
+			var downvote="#downvote-song_"+song_id;
+			if ($(downvote).css("background-position")=="0% 0%")
+				{
+				var thissongscore_selector='#songscore-song_'+song_id;
+				var thissongscore=parseInt($(thissongscore_selector).text());
+				var newsongscore=thissongscore+2;
+				$(thissongscore_selector).html(newsongscore);
+				$(this).css("background-position", "0% 0%");
+				$(downvote).css("background-position", "0% 100%");
+				}
+			else
+				{
+				var thissongscore_selector='#songscore-song_'+song_id;
+				var thissongscore=parseInt($(thissongscore_selector).text());
+				var newsongscore=thissongscore+1;
+		
+				$(thissongscore_selector).html(newsongscore);
+				$(this).css("background-position", "0% 0%");
+				}
+			
+			}
+      
 
     });
 
 //if somebody clicks downvote
 $("body").delegate("div.downvote", "click", function(){
-      $(this).css("background-position","left bottom");
-	  
+      	if ($(this).css("background-position") == "0% 0%") //if already downvote
+			{
+			//gets the song id number as an int
+			var song_id=$(this).attr('id');
+			song_id=song_id.replace("downvote-song_", "");
+			song_id=parseInt(song_id);
+			
+			var thissongscore_selector='#songscore-song_'+song_id;
+			var thissongscore=parseInt($(thissongscore_selector).text());
+			var newsongscore=thissongscore+1;
+			$(thissongscore_selector).html(newsongscore);
+			$(this).css("background-position", "0% 100%");
+			}
+		else //if already not downvote
+			{
+			
+			var song_id=$(this).attr('id');
+			song_id=song_id.replace("downvote-song_", "");
+			song_id=parseInt(song_id);
+			var upvote="#upvote-song_"+song_id;
+			if ($(upvote).css("background-position")=="0% 0%")
+				{
+				var thissongscore_selector='#songscore-song_'+song_id;
+				var thissongscore=parseInt($(thissongscore_selector).text());
+				var newsongscore=thissongscore-2;
+				$(thissongscore_selector).html(newsongscore);
+				$(this).css("background-position", "0% 0%");
+				$(upvote).css("background-position", "0% 100%");
+				}
+			
+			else
+				{
+				var thissongscore_selector='#songscore-song_'+song_id;
+				var thissongscore=parseInt($(thissongscore_selector).text());
+				var newsongscore=thissongscore-1;
+		
+				$(thissongscore_selector).html(newsongscore);
+				$(this).css("background-position", "0% 0%");
+				}
+			}
     });
 	
   </script>

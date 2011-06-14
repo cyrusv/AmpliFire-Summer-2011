@@ -396,33 +396,35 @@ li.browsechoices {
 	);
 }
 
-#fullsong {
+.fullsong {
 	background-color: transparent;
 	padding:20px 30px;
 }
 
-#upvotebox  {
+.upvote{
 	height:60px;
 	width:40px;
 	background-image: url(upvote.png);
 	background-repeat:no-repeat;
-	background-position: left top;
+	background-position: left bottom;
 }
-#downvotebox {
+
+
+.downvote {
 	height:60px;
 	width:40px;
 	background-image: url(downvote.png);
 	background-repeat:no-repeat;
-	background-position: left top;
+	background-position: left bottom;
 }
-#songscore {
+.songscore {
 	font-weight:800;
 	font-size:12pt;
 	text-align:center;
 }
 
 
-#votes{
+.votes{
 	background-color: transparent;
 	height:100%;
 	position: absolute;
@@ -430,7 +432,7 @@ li.browsechoices {
 	float:left;
 	vertical-align:middle;
 }
-#votes form{
+.votes form{
 	margin: 0; 
 	padding: 0;
 	background-color: transparent;
@@ -444,7 +446,7 @@ li.browsechoices {
 	background-color: transparent;
 }
 
-#mainsong {
+.mainsong {
 	background-color: transparent;
 	margin: auto;
 	width: 50%;
@@ -453,7 +455,7 @@ li.browsechoices {
 	text-align:center;
 }
 
-#mainsong h1{
+.mainsong h1{
 	margin: 5px;
 	padding: 0px;
 	text-align:center;
@@ -461,7 +463,7 @@ li.browsechoices {
 	color:#000;
 	font-weight:700;
 }
-#mainsong h3{
+.mainsong h3{
 	margin: 10px;
 	padding: 0px;
 	text-align:center;
@@ -469,18 +471,18 @@ li.browsechoices {
 	font-weight:100;
 }
 
-#mainsong a, a:visited {	
+.mainsong a, a:visited {	
 	color:#000;
 	background: inherit;
 	text-decoration: none;
 }
-#mainsong a:hover {
+.mainsong a:hover {
 	color:#000;
 	background: inherit;
 	text-decoration: underline;
 }
 
-#mainsong p{
+.mainsong p{
 	padding:0px;
 	margin: 0px;
 }

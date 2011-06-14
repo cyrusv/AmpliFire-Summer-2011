@@ -42,11 +42,7 @@ def main_page(request):
 def get_top_ten(request):
 	if request.is_ajax():
 		top_ten_songs = Song.objects.order_by('-score')[:6] #only displays latest 10 songs
-		print top_ten_songs[0]
-		print top_ten_songs[0].artist_name
-		print top_ten_songs[0].pk
 		top_ten_data = serializers.serialize("json", top_ten_songs, use_natural_keys=True)
-		print top_ten_data
 		return HttpResponse(top_ten_data, 'application/json')
 	else:
 		return HttpResponse("not ajax")
