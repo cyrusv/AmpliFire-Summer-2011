@@ -6,113 +6,15 @@
 	<title>
 		Amplifire | {% block title %}{% endblock %}
 	</title>
+
 	<link rel = "stylesheet" href = "/site_media/style.css" type = "text/css" />
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" src="/site_media/ibox/ibox.js"></script>
-	
-  <script>
-  
-  ///////// TABS Filter/search TABS///////
-	$(document).ready(function() 
-		{
-
-		//When page loads...
-		$(".tab_content").hide(); //Hide all content
-		//$(".tab_container").animate({height:250},"slow"); //Hide all content
-		$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-		$(".tab_content:first").show(); //Show first tab content
-		$("ul.genrechoices").hide(); //hide genrechoices
-		$(".smartchoices").hide(); //hide genrechoices
-	
-
-		//On Click Event
-		$("ul.tabs li").click(function()
-			{
-
-			$("ul.tabs li").removeClass("active"); //Remove any "active" class
-			$(this).addClass("active"); //Add "active" class to selected tab
-			$(".tab_content").hide(); //Hide all tab content
-
-			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-			$(activeTab).fadeIn(); //Fade in the active ID content
-			return false;
-			});
-
-		});	
-	//////// filters ////////
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">	</script>
+	<script type="text/javascript" src="/site_media/ibox/ibox.js">											</script>
+	<script type="text/javascript" src="/site_media/playerscript.js">  										</script>
 	
 	
-	$(document).ready(function() 
-		{
-		//browse
-		$("input#genre").click(function()
-			{
-			$("ul.genrechoices").toggle("normal"); 
-			});
-		
-		$("input#smartid").click(function()     //"label[for=showsmart]"
-			{
-			$(".smartchoices").toggle("normal");
-			});
-		
-		
-		$("input#rock").click(function()
-			{
-			$(".rock").toggle("normal");
-			});
-		$("input#pop").click(function()
-			{
-			$(".pop").toggle("normal");
-			});
-		$("input#electronic").click(function()
-			{
-			$(".electronic").toggle("normal");
-			});
-		$("input#hip-hop").click(function()
-			{
-			$(".hip-hop").toggle("normal");
-			});
-
-	
-	//search
-	
-
-		});
-	
-	
-	
-
-//	RECOMMENDATION ///////
-	 
-$(document).ready(function(){
-	
-	$(".recommend").ready(function()
-				{				
-				$.get("/ajax/recommend/",  //ask for recommendations
-				{},
-				function(data)
-							  {
-								$("#rec0").replaceWith('<p id="recp"><a href="'+data[0].fields.song_file+'">'+data[0].fields.song_name+'</a></p>');
-								$("#rec1").replaceWith('<p id="recp"><a href="'+data[1].fields.song_file+'">'+data[1].fields.song_name+'</a></p>');
-								$("#rec2").replaceWith('<p id="recp"><a href="'+data[2].fields.song_file+'">'+data[2].fields.song_name+'</a></p>');
-								$("#rec3").replaceWith('<p id="recp"><a href="'+data[3].fields.song_file+'">'+data[3].fields.song_name+'</a></p>');
-												
-												
-												
-								
-							  });
-	
-				});
-			});
-
-
-
-	
-  </script>
-	
-	
-	</head>
+</head>
 	
 	
 	
@@ -146,58 +48,53 @@ $(document).ready(function(){
 			<!-- LEFTwrap starts -->
 			<div id="left_subwrap">
 				<div id="browse_search">
-				<ul class="tabs">
-					<li><a href="#tab1">Browse</a></li>
-					<li><a href="#tab2">Search</a></li>
-				</ul>
-
-				<div class="tab_container">
-					<div id="tab1" class="tab_content">
-					
-					<form action="" method="GET">
-					<ul class="browse_search_content">
-					<li><input type="submit" value="Shuffle!" /></li><br>
-					
-					<label for="genre"><li><input type="checkbox" name="genre" value="genre" id="genre"/> Genre</li></label>
-						<ul class="genrechoices">
-							<label for="pop"><li class="browsechoices"><input type="checkbox" name="pop" value="pop" id="pop" checked="yes"/> Pop </li></label>
-							<label for="rock" class="rockchoice"><li class="browsechoices"><input type="checkbox" name="rock" value="rock" id="rock" checked="yes"/> Rock </li></label>
-							<label for="electronic"><li class="browsechoices"><input type="checkbox" name="electronic" value="electronic" id="electronic" checked="yes"/> Electronic </li></label>
-							<label for="hip-hop"><li class="browsechoices"><input type="checkbox" name="hip-hop" value="hip-hop" id="hip-hop" checked="yes"/> Hip-Hop </li></label>
-						</ul>
-					<label for="smartid"><li class="smart"><input type="checkbox" name="smart" value="smart" id="smartid" /> SmartFilter</li></label>
-						
-							
-					
-					<span class="smartchoices">Filter strength<br></span>
-					<li><input type="range" name="randomness" min="0" max="10" step=".1" value="5" class="smartchoices"></li>
-					
-					
-					</form>
-					
-					
-					
-					</div>
-					
-					<div id="tab2" class="tab_content">
-					<form>
-					<p><input name="search" placeholder="Search" legnth="100"></p>
-					<p align="center"><input type="submit" name="search" value="search"></p>
+					<ul class="tabs">
+						<li><a href="#tab1">Browse</a></li>
+						<li><a href="#tab2">Search</a></li>
 					</ul>
-					</form>
-					
+
+					<div class="tab_container">
+						<div id="tab1" class="tab_content">
+						
+						<form action="" method="GET">
+							<ul class="browse_search_content">
+							<li><input type="submit" value="Shuffle!" /></li><br>
+							
+							<label for="genre"><li><input type="checkbox" name="genre" value="genre" id="genre"/> Genre</li></label>
+								<ul class="genrechoices">
+									<label for="pop"><li><input type="checkbox" name="pop" value="pop" id="pop" class="reloadmusic" checked="yes"/> Pop </li></label>
+									<label for="rock"><li><input type="checkbox" name="rock" value="rock" id="rock" class="reloadmusic" checked="yes"/> Rock </li></label>
+									<label for="electronic"><li><input type="checkbox" name="electronic" value="electronic" id="electronic" class="reloadmusic" checked="yes"/> Electronic </li></label>
+									<label for="hip-hop"><li><input type="checkbox" name="hip-hop" value="hip-hop" id="hip-hop" class="reloadmusic" checked="yes"/> Hip-Hop </li></label>
+								</ul>
+							<label for="smartid"><li class="smart"><input type="checkbox" name="smart" value="smart" id="smartid" /> SmartFilter</li></label>
+							
+							<span class="smartchoices">Filter strength<br></span>
+							<li><input type="range" name="randomness" min="0" max="10" step=".1" value="5" class="smartchoices"></li>
+							
+						</form>
+						
+						</div>
+						
+						<div id="tab2" class="tab_content">
+							<form>
+							<p><input name="search" placeholder="Search" legnth="100"></p>
+							<p align="center"><input type="submit" name="search" value="search"></p>
+							</ul>
+							</form>
+						
+						</div>
 					</div>
-				</div>
 				</div>
 				
 				
 				<div id="recommendations">
-				<h3>You might also like:</h3>
-				<p> <span id="recommend">Regenerate Recommendations</span></p>
-				<div id="rec0"></div>
-				<div id="rec1"></div>
-				<div id="rec2"></div>
-				<div id="rec3"></div>
+					<h3>You might also like:</h3>
+					<p> <span id="recommend">Regenerate Recommendations</span></p>
+					<div id="rec0"></div>
+					<div id="rec1"></div>
+					<div id="rec2"></div>
+					<div id="rec3"></div>
 				</div>
 			
 			</div>
@@ -209,11 +106,11 @@ $(document).ready(function(){
 			<!-- RIGHTwrap starts -->
 			<div id="right_subwrap">
 			
-			<div id="toptabnav">
-			<a href="/" {% block listen %}{%endblock%}>       <img src="/site_media/lissen.png" alt="Listen" height="80"/></a>
-			<a href="/artist/" {% block artist %}{%endblock%}><img src="/site_media/brodcast.png" alt="Broadcast" height="80"/></a>
-			<a href="/users/{{user.username}}/"{% block profile %}{%endblock%}><img src="/site_media/myprofile.png" alt="My Profile" height="80"/></a>
-			</div>
+				<div id="toptabnav">
+				<a href="/" {% block listen %}{%endblock%}>       <img src="/site_media/lissen.png" alt="Listen" height="80"/></a>
+				<a href="/artist/" {% block artist %}{%endblock%}><img src="/site_media/brodcast.png" alt="Broadcast" height="80"/></a>
+				<a href="/users/{{user.username}}/"{% block profile %}{%endblock%}><img src="/site_media/myprofile.png" alt="My Profile" height="80"/></a>
+				</div>
 			
 			<!-- content-wrap starts -->
 			<div id="content-wrap">

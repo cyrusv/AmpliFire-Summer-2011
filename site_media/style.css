@@ -197,7 +197,7 @@ input.button {
 }
 
 #left_subwrap {
-	position: absolute;
+	position: fixed;
 	top:0;
 	left:0;
 	width:280px;
@@ -205,20 +205,19 @@ input.button {
 }
 
 #browse_search {
-	position:absolute;
+	position:relative;
 	top:10px;
 	left:10px;
 	width:260px;
-	height:100px;
-	
+	height:100%;
 }
 
 
 
 ul.tabs {
+	position:relative;
 	margin: 0;
 	padding: 0;
-	float: left;
 	list-style: none;
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #000;
@@ -275,13 +274,17 @@ li.browsechoices {
 	font-weight: 100;
 }
 
+#songlist {
+	overflow: hidden;
+	height:910px;
+}
 
 .tab_container {
 	border: 1px solid #FCF9F4;
 	border-top: none;
 	overflow: hidden;
 	clear: both;
-	float: left; width: 100%;
+	width: 100%;
 	-moz-border-radius-bottomright: 15px;
 	-moz-border-radius-bottomleft: 15px;
     -webkit-border-bottom-right-radius: 15px;
@@ -328,11 +331,10 @@ li.browsechoices {
 
 
 #recommendations {
-	position:absolute;
-	top:320px;
+	position:relative;
+	top:20px;
 	left:5px;
 	width:260px;
-	height:300px;
 	background:#FCF9F4;
 	border-width:0;
 }
@@ -397,7 +399,7 @@ li.browsechoices {
 }
 
 .fullsong {
-	background-color: transparent;
+	background-color:transparent;
 	padding:20px 30px;
 }
 
@@ -426,17 +428,13 @@ li.browsechoices {
 
 .votes{
 	background-color: transparent;
-	height:100%;
-	position: absolute;
-	left:100px;
+	position: relative;
+	left:0px;
+	width:40px;
 	float:left;
 	vertical-align:middle;
 }
-.votes form{
-	margin: 0; 
-	padding: 0;
-	background-color: transparent;
-}
+
 .songvote{
 	margin-left:auto;
 	margin-right:auto;
@@ -445,7 +443,6 @@ li.browsechoices {
 	padding:0px
 	background-color: transparent;
 }
-
 .mainsong {
 	background-color: transparent;
 	margin: auto;
@@ -656,200 +653,5 @@ li.browsechoices {
 	clear:both; 
 	height:0; 
 	content: "."; 
-}
-
-
-
-
-
-
-
-
-/*retired
-
-#sidebar .sidemenu {
-	margin: 5px 10px 8px 7px; padding: 0;
-	text-decoration: none;		
-	border-top: 2px solid #D0E89F;
-}
-#sidebar .sidemenu li {
-	list-style: none;
-	margin: 0;
-	padding: 7px 10px; 			
-	border-bottom: 1px solid #DAEBA3;	
-}
-* html body #sidebar .sidemenu li {
-	height: 1%;
-}
-#sidebar .sidemenu li a {
-	text-decoration: none;	
-	color: #684F3E;
-}
-#sidebar .sidemenu li a span {
-	color: #A98D76;	
-	font-size: .9em;
-	
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	font-style: italic;
-	font-weight: normal;		
-}
-#sidebar .sidemenu li a:hover {	
-	color: #000;	
-	background: none;	
-}
-#sidebar .sidemenu ul { margin: 0 0 0 5px; padding: 0; }
-#sidebar .sidemenu ul li { border: none; }
-#lnav {
-	clear: both;	
-	padding: 0;	margin: 0;
-	width: 920px;
-	height: 50px;
-	background: #0e609e url(/media/template_images/nav.gif) no-repeat;		
-}
-#lnav ul {
-	float: left;
-	list-style: none;	
-	margin: 0;
-	padding: 0 0 0 40px;			
-	height: 50px;	
-}
-#lnav ul li {
-	display: inline;
-	margin: 0; padding: 0;
-}
-#lnav ul li a {
-	display: block;
-	float: left;
-	width: auto;
-	margin: 0;
-	padding: 0 14px;
-	color: #fff;
-	font: bold 16px/50px 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
-	text-decoration: none;	
-	letter-spacing: -0.5px;
-}
-#lnav ul li a:hover, 
-#lnav ul li a:active {
-	color: #edf8c7;	
-}
-#lnav ul li#current a {	
-	background: #0c4e80 url(/media/template_images/pointer.gif) no-repeat center bottom;	
-	color: #93DAFF;
-}
-
-
-#mnav {
-	clear: both;	
-	padding: 0;	margin: 0;
-	width: 920px;
-	height: 50px;
-	background: #FFA538 url(/media/template_images/nav.gif) no-repeat;		
-}
-#mnav ul {
-	float: right;
-	list-style: none;	
-	margin: 0;
-	padding: 0 0 0 40px;			
-	height: 50px;	
-}
-#mnav ul li {
-	display: inline;
-	margin: 0; padding: 0;
-}
-#mnav ul li a {
-	display: block;
-	float: left;
-	width: auto;
-	margin: 0;
-	padding: 0 14px;
-	color: #fff;
-	font: bold 16px/50px 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
-	text-decoration: none;	
-	letter-spacing: -0.5px;
-}
-#mnav ul li a:hover, 
-#mnav ul li a:active {
-	color: #edf8c7;	
-}
-#mnav ul li#current a {	
-	background: #0c4e80 url(/media/template_images/pointer.gif) no-repeat center bottom;	
-	color: #93DAFF;
-}
-#header {
-	position: relative;
-	width: 920px;
-	height: 205px;
-	background: #FFA538;	
-	color: #fff;	
-	padding: 0;	
-	margin: 0;
-}
-#header h1#logo-text a {
-	position: absolute;
-	margin: 0; padding: 0;
-	font: bold 56px 'Trebuchet MS', 'Helvetica Neue', Arial, Sans-serif;
-	letter-spacing: -3px;
-	text-decoration: none;
-	color: #ffffff;
-	
-
-	top: 58px; left: 55px;	
-}
-#header p#slogan {
-	position: absolute;
-	margin: 0; padding: 0;
-	font: bold 15px 'Trebuchet MS', 'Helvetica Neue', Arial, Sans-serif;
-	color: #ffffff;
-	letter-spacing: -0.5px;
-	
-
-	top: 122px; left: 135px;		
-}
-
-
-#header form#quick-search {
-	position: absolute;
-	top: 75px; right: 55px;
-	padding: 0; margin: 0;
-	border: none;
-	width: 223px; height: 33px;
-	background: #82c7f4 url(/media/template_images/header-search.gif) no-repeat;	
-	z-index: 999999;
-}
-#header form#quick-search p {
-	margin: 0; padding: 0;		
-}
-#header form#quick-search input {
-	border: none;
-	background: transparent;
-	color: #0e5792;
-	float: left;
-}
-#header form#quick-search .tbox {
-	margin: 5px 0 0 5px; 
-	width: 170px;	
-	display: inline;	
-}
-#search form#quick-search .btn{
-	width: 25px; height: 25px;		
-}
-#header form#quick-search label {
-	display: none;
-}
-
-
-#sidebar {
-	float: right;
-	width: 270px;
-	padding: 0; 
-	margin: 0 45px 0 0;
-	display: inline;	
-}
-#sidebar h3 {
-	color: #115280; 
-	font: normal 1.6em 'Trebuchet MS', 'Helvetica Neue', Arial, Sans-serif;
-	text-transform: none;
-	padding: 10px 0 2px 0; 
-	margin: 10px 0 0 10px; 
 }
 
