@@ -15,10 +15,12 @@ link_blue: 306495
 /* Top Elements */
 * { margin: 0; padding: 0; outline: 0 }
 
+
+
 body {
-	font: 12px/170% 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	color: #474745; 
-	text-align: center;	
+	font:12px/170% 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	background-color:#FCF9F4;
+	text-align:center;	
 }
 
 /* links */
@@ -202,6 +204,8 @@ input.button {
 	left:0;
 	width:280px;
 	background: #FCF9F4;
+	min-height: 470px;
+	float:left;
 }
 
 #browse_search {
@@ -212,7 +216,12 @@ input.button {
 	height:100%;
 }
 
-
+#farrightwrap{
+	background-color:red;
+	float:left;
+	width: 100%;
+	
+}
 
 ul.tabs {
 	position:relative;
@@ -377,25 +386,14 @@ li.browsechoices {
 	top: 90px;
 	right: 0px;
 	width: 720px;
-	background: #FCF9F4;
-	border: 1px solid #DCDCDC
-	
-		-moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -khtml-border-radius: 20px;
-    border-radius: 20px;
-	background-image: -webkit-gradient(
-    linear,
-    right bottom,
-    100 top,
-    color-stop(0, #FAF7F2),
-    color-stop(0.32, #F7F4EF)
-	);
-	background-image: -moz-linear-gradient(
-    right bottom,
-    #FAF7F2 0%,
-    #F7F4EF 32%
-	);
+	border-left: 1px solid #DCDCDC;
+	border-top: 1px solid #DCDCDC;
+	border-bottom: 1px solid #787878;
+	border-right: 1px solid #787878;
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
 }
 
 .fullsong {
@@ -516,13 +514,13 @@ li.browsechoices {
 /* logo */
 #amplifirelogo {
 	position:fixed;
-	left:10px;
+	left:5px;
 	bottom:10px;
 }
 #headphonepic{
-	position:absolute;
-	left:900px;
-	bottom:50px;
+	position:fixed;
+	right:90px;
+	bottom:-2px;
 	padding:0px;
 	margin:0px;
 }
