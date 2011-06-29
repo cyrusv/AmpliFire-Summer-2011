@@ -11,8 +11,10 @@
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">	</script>
 	<script type="text/javascript" src="/site_media/ibox/ibox.js">											</script>
-	<script type="text/javascript" src="/site_media/playerscript.js">  										</script>
-	
+	<script type="text/javascript" src="/site_media/playerscript.js">  										</script>	
+	<script type="text/javascript" src="/site_media/recommend.js">  										</script>	
+	<script type="text/javascript" src="/site_media/browse.js">  										</script>	
+	<script type="text/javascript" src="/site_media/voting.js">  										</script>	
 	
 </head>
 	
@@ -115,11 +117,17 @@
 			<div id="content-wrap">
 
 				<div id="main">
-
-
+				
+				
+				
+				
 						{% block content %}
 						{% endblock %}
-					
+				
+
+
+				
+				
 				</div>
 
 			<!-- content-wrap ends-->	
@@ -138,6 +146,22 @@
 
 
 	
+	<div id="player">
 	
+  
+  
+		<div id="songqueue">
+			<ol id="nowplaying">
+			
+			</ol>
+		</div>
+		
+		<div id="playerbottom">
+			<div style="background-image:url(/site_media/player_controls/rw.png)" class="player_control" id="rw"></div>
+			<div class="controlpause player_control" id="play"></div>
+			<div style="background-image:url(/site_media/player_controls/ff.png)" class="player_control" id="ff"></div>
+			<audio src="http://amplifire.mobi:8880/media/songs/Rascall_Flats_-_What_hurts_The_Most.mp3" id="mysong" controls class="audio"></audio>
+		</div>
+	</div>
 </body>		
 </html>
